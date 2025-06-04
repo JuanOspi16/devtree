@@ -41,13 +41,6 @@ export const createAccount = async (req : Request, res : Response) => {
 
 export const login = async (req: Request, res: Response) => {
 
-    //Validar los datos de entrada
-    let errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        res.status(400).json({ errors: errors.array() });
-        return;
-    }
-
     const {email, password} = req.body;
     const user = await User.findOne({ email });
     if (!user) {
